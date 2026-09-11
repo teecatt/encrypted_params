@@ -1,14 +1,16 @@
 {
   "v": 1,
   "kdf": "argon2id",
-  "mem": 512,
+  "type": 2,
   "time": 4,
   "parallelism": 1,
+  "memKiB": 524288,
+  "memMiB": 512,
   "hashLen": 32,
   "salt": "6fe98fc9c328360b367529c4fe215a61",
   "cipher": "AES-CTR",
-  "notes_repo": "teecatt/encrypted_notes",
-  "notes_branch": "dev",
-  "notes_file": "notes.enc.json",
+  "notesRepo": "teecatt/encrypted_notes",
+  "notesBranch": "dev",
+  "notesFile": "notes.enc.json",
   "magic": "NOTESv1"
 }
