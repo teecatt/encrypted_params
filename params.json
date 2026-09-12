@@ -11,6 +11,6 @@
   "cipher": "AES-CTR",
   "notesRepo": "teecatt/encrypted_notes",
   "notesBranch": "dev",
-  "notesFile": "notes.enc.json",
+  "notesDir": "notes",
   "magic": "NOTESv1"
 }
