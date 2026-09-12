@@ -58,6 +58,14 @@ footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-
     </tbody>
   </table>
 
+  <h2>AES-256-CTR 与密钥校验</h2>
+  <p>正文与目录先拼成一段明文 <code>NOTESv1{...}</code>，再用 Argon2id 派生的 256 位密钥以 <strong>AES-256-CTR</strong> 加密（随机 IV，与密文一起公开存储）。</p>
+  <ul>
+    <li><strong>错误密钥也能"解密成功"</strong>：CTR 是流密码，任意 256 位密钥都能把密文解成等长字节流，不会报错——只是结果是随机乱码。</li>
+    <li><strong>如何判断密钥对错</strong>：明文开头有预定义的前 7 个字符 <code>NOTESv1</code>（magic）。解密后若前 7 字节与之完全一致，才认为密钥正确并继续解析后面的 JSON；否则判定为错误密钥，页面只显示乱码。</li>
+    <li><strong>不泄露口令</strong>：magic 是公开常量，校验只是自证，不暴露任何密钥信息；错误密钥恰好猜中 magic 的概率约 2<sup>-56</sup>，可忽略。</li>
+  </ul>
+
   <h2>结论</h2>
   <blockquote>10 位以上的随机密码，即便 1000 张 H100 也要数万年；12 位以上基本不可行。与其堆机器，不如换更长的随机密码。</blockquote>
 
